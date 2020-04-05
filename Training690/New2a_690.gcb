@@ -1,0 +1,18 @@
+'video2a LED's connected to RC0,RC1,RC2,RC3
+
+#CHIP 16F690
+
+  Dir RC0 out
+  Dir RC1 out
+
+  'Set initial value
+  RC0 = 0
+  RC1 = 1
+
+  ' ----- Main body of program commences here.
+  Do Forever
+
+    wait 1 s
+    RC0 = NOT RC0
+    RC1 = NOT RC1
+  Loop

@@ -1,0 +1,71 @@
+#chip 16F690
+#option Explicit
+
+  #define LED1 RC0
+  #define LED2 RC1
+  #define LED3 RC2
+  #define LED4 RC3
+
+  #define SWITCH  RA3
+  #define VR1  RA0
+
+  Dir LED1 out
+  Dir LED2 out
+  Dir LED3 out
+  Dir LED4 out
+  Dir SWITCH  in
+
+
+
+  Dim LEDState as Integer
+  'Initilize the variable to zero
+  LEDState = 0
+
+  Dim Direction as Integer
+  Direction = -1
+
+
+  ' ----- Main body of program commences here.
+  Do Forever
+
+    Select Case LEDState
+      case 0
+        'Set one LED on... could be 1 or ON
+        LED1 = 1
+        LED2 = 0
+        LED3 = 0
+        LED4 = 0
+      case 1
+        LED1 = 0
+        LED2 = 1
+        LED3 = 0
+        LED4 = 0
+      case 2
+        LED1 = 0
+        LED2 = 0
+        LED3 = 1
+        LED4 = 0
+      case 3
+        LED1 = 0
+        LED2 = 0
+        LED3 = 0
+        LED4 = 1
+    end select
+
+    LEDState = LEDState + Direction
+    If LEDState = 4  then LEDState = 0
+    If LEDState = -1 then LEDState = 3
+
+
+    wait 500 ms
+
+    if switch = 0 then
+        if Direction = 1 then
+          Direction = -1
+        else
+          Direction = 1
+        End if
+        wait while switch = 0
+    end if
+
+  Loop
