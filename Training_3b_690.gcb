@@ -1,0 +1,22 @@
+'LED's connected to RC0,RC1,RC2,RC3
+'switch to RA3
+
+#CHIP 16F690
+
+  #OPTION Explicit
+  #DEFINE GREENLED RC0
+  #DEFINE REDLED   RC1
+  #DEFINE SWITCH   RA3
+
+  Dir GREENLED out
+  Dir REDLED   out
+  Dir SWITCH   in
+
+
+  ' ----- Main body of program commences here.
+  Do Forever
+
+    SetWith ( GREENLED, SWITCH )
+    SetWith ( REDLED,   NOT SWITCH )
+
+  Loop

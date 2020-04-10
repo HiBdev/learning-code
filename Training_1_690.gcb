@@ -1,0 +1,14 @@
+'video1 altered for LPCDB on-board LED's
+'LED's connected to RC0,RC1,RC2,RC3
+
+#CHIP 16F690
+    ' ----- Main body of program commences here.
+    Do Forever
+
+        'Light LED onboard LED for 100 milliseconds:
+        PulseOut RC0, 100 ms
+
+        'Then wait 900 milliseconds after LED goes off:
+        Wait 900 ms
+
+    Loop
