@@ -1,0 +1,38 @@
+#chip 12F1572
+#option Explicit
+
+  'TX is RA0,RX is RA1
+
+    'USART settings for USART1
+    #define USART_BAUD_RATE 9600
+    #define USART_TX_BLOCKING
+    #define USART_DELAY OFF
+
+
+'Part One  - Hello World
+
+   ' do Forever
+   '   HSerPrint "Hello World"
+   '   HSerPrintCRLF
+   '   wait 1 s
+   ' loop
+
+
+
+'Part Two - Send the ADC value to the terminal software
+ '   do Forever
+  '   HSerPrint "ReadAD = "
+  '    HSerPrint ReadAD( ANA0 )
+  '    HSerPrintCRLF
+  '    wait 1 s
+  '  loop
+
+
+'Part three - Send a scaled, with a scaled value of between 0 and 100 when the input value is 0 to 236, ADC value to the terminal software
+
+    do Forever
+      HSerPrint "Scaled = "
+      HSerPrint Scale( ReadAD( ANA0 ), 0, 236, 0, 100 )
+      HSerPrintCRLF
+     wait 1 s
+   loop
